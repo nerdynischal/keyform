@@ -5,6 +5,8 @@ An interactive 87-key ANSI QWERTY keyboard built with React and Vite. It mirrors
 ## Project structure
 
 ```text
+public/
+└── keyform-key.svg     Shared header logo and favicon
 src/
 ├── components/
 │   ├── keyboard/       Keyboard rendering, layout data, and styles
@@ -34,3 +36,12 @@ npm run dev
 npm run lint
 npm run build
 ```
+
+## GitHub Pages
+
+The production build uses the `/keyform/` base path and deploys `dist/` through
+the workflow in `.github/workflows/deploy-pages.yml`.
+
+Before the first deployment, open the repository's **Settings → Pages** and set
+**Build and deployment → Source** to **GitHub Actions**. Pushes to `master` will
+then publish automatically, and the workflow can also be run manually.

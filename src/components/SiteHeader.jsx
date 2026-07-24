@@ -1,5 +1,7 @@
 import { SoundIcon } from './SoundIcon.jsx'
 
+const BRAND_MARK_URL = `${import.meta.env.BASE_URL}keyform-key.svg`
+
 const PLATFORMS = [
   { value: 'mac', label: 'Mac' },
   { value: 'windows', label: 'Windows' },
@@ -15,7 +17,7 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="Keyform home">
-        <img className="brand__mark" src="/favicon.svg" alt="" aria-hidden="true" />
+        <img className="brand__mark" src={BRAND_MARK_URL} alt="" aria-hidden="true" />
         <span>KEYFORM</span>
       </a>
 
