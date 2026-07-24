@@ -39,17 +39,10 @@
 }
 
 .brand__mark {
-  width: 28px;
-  height: 28px;
-  padding: 3px;
-  border: 1px solid var(--ink);
-  display: grid;
-  place-items: center;
-  transform: rotate(45deg);
-}
-
-.brand__mark span {
-  transform: rotate(-45deg);
+  width: 34px;
+  height: 34px;
+  display: block;
+  flex: 0 0 auto;
 }
 
 .platform-toggle {

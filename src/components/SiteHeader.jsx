@@ -15,9 +15,7 @@ export function SiteHeader({
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="Keyform home">
-        <span className="brand__mark" aria-hidden="true">
-          <span>K</span>
-        </span>
+        <img className="brand__mark" src="/favicon.svg" alt="" aria-hidden="true" />
         <span>KEYFORM</span>
       </a>
 
