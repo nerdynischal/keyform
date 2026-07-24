@@ -117,8 +117,29 @@ h1 {
   max-width: 1100px;
   min-height: 1.8em;
   margin-inline: auto;
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
+  display: flex;
+  justify-content: center;
+  justify-content: safe center;
+  overflow: hidden;
+  direction: rtl;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.58) 3%,
+    #000 9%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.58) 3%,
+    #000 9%
+  );
+}
+
+.live-title__line {
+  flex: 0 0 auto;
+  direction: ltr;
 }
 
 .lede {

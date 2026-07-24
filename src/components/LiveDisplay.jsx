@@ -7,8 +7,10 @@ export function LiveDisplay({ typed }) {
         aria-live="polite"
         aria-label={typed ? `Typed text: ${typed}` : 'Typed text area. Start typing.'}
       >
-        <span>{typed}</span>
-        <span className="caret" aria-hidden="true" />
+        <span className="live-title__line" aria-hidden="true">
+          <span>{typed}</span>
+          <span className="caret" />
+        </span>
       </h1>
       <p className="lede">Use your keyboard, or tap the keys below.</p>
     </div>
