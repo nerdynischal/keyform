@@ -53,7 +53,7 @@ export function useKeyboardInput() {
       now,
     )
     oscillator.frequency.exponentialRampToValueAtTime(80, now + 0.035)
-    gain.gain.setValueAtTime(0.028, now)
+    gain.gain.setValueAtTime(0.035, now)
     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.045)
 
     oscillator.connect(gain).connect(context.destination)
