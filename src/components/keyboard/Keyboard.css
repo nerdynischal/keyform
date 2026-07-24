@@ -233,6 +233,10 @@
   letter-spacing: -0.02em;
 }
 
+.keycap--optical-symbol .keycap__label {
+  font-size: clamp(6px, calc(var(--unit) * 0.24), 14px);
+}
+
 .keycap__arrow {
   width: clamp(8px, calc(var(--unit) * 0.28), 16px);
   height: auto;

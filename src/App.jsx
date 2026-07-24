@@ -3,9 +3,11 @@ import { LiveDisplay } from './components/LiveDisplay.jsx'
 import { SiteHeader } from './components/SiteHeader.jsx'
 import { InteractiveKeyboard } from './components/keyboard/InteractiveKeyboard.jsx'
 import { useKeyboardInput } from './hooks/useKeyboardInput.js'
+import { usePlatformPreference } from './hooks/usePlatformPreference.js'
 import './App.css'
 
 function App() {
+  const [platform, setPlatform] = usePlatformPreference()
   const {
     capsLock,
     lastKey,
@@ -22,7 +24,9 @@ function App() {
   return (
     <main className="page-shell">
       <SiteHeader
+        platform={platform}
         muted={muted}
+        onPlatformChange={setPlatform}
         onToggleSound={toggleMuted}
         onReset={reset}
       />
@@ -30,6 +34,7 @@ function App() {
       <section className="hero" id="top" aria-labelledby="page-title">
         <LiveDisplay typed={typed} />
         <InteractiveKeyboard
+          platform={platform}
           pressedKeys={pressedKeys}
           capsLock={capsLock}
           onPress={pressKey}

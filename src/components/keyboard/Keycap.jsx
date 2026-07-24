@@ -9,6 +9,7 @@ function getKeycapClassName(item, pressed) {
     'keycap',
     pressed && 'is-pressed',
     item.small && 'keycap--small',
+    item.opticalSymbol && 'keycap--optical-symbol',
     item.align && `keycap--${item.align}`,
     item.cluster && `keycap--${item.cluster}`,
   ].filter(Boolean).join(' ')

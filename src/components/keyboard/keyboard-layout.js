@@ -5,6 +5,15 @@ export const ARROW_KEYS = {
   right: { code: 'ArrowRight', label: '', arrow: 'right', cluster: 'arrows', aria: 'right arrow' },
 }
 
+const MAC_SYMBOL_CODES = new Set([
+  'ControlLeft',
+  'ControlRight',
+  'MetaLeft',
+  'MetaRight',
+  'AltLeft',
+  'AltRight',
+])
+
 const functionKeys = (codes) => codes.map((code) => ({
   code,
   label: code.toLowerCase(),
@@ -83,20 +92,32 @@ export const KEY_ROWS = [
     { placeholder: true, cluster: 'nav' },
   ],
   [
-    { code: 'ControlLeft', label: 'ctrl', width: 1.25, align: 'left' },
-    { code: 'MetaLeft', label: '◆', width: 1.25, aria: 'meta' },
-    { code: 'AltLeft', label: 'alt', width: 1.25 },
+    { code: 'ControlLeft', label: 'ctrl', width: 1.25, align: 'left', platformLabels: { mac: '⌃', windows: 'ctrl' }, platformAria: { mac: 'control', windows: 'control' } },
+    { code: 'MetaLeft', label: 'win', width: 1.25, platformLabels: { mac: '⌘', windows: 'win' }, platformAria: { mac: 'command', windows: 'windows key' } },
+    { code: 'AltLeft', label: 'alt', width: 1.25, platformLabels: { mac: '⌥', windows: 'alt' }, platformAria: { mac: 'option', windows: 'alt' } },
     { code: 'Space', label: '', width: 6.25, aria: 'space bar' },
-    { code: 'AltRight', label: 'alt', width: 1.25 },
-    { code: 'MetaRight', label: '◆', width: 1.25, aria: 'meta' },
-    { code: 'ContextMenu', label: 'menu', width: 1.25 },
-    { code: 'ControlRight', label: 'ctrl', width: 1.25, align: 'right' },
+    { code: 'AltRight', label: 'alt', width: 1.25, platformLabels: { mac: '⌥', windows: 'alt' }, platformAria: { mac: 'option', windows: 'alt' } },
+    { code: 'MetaRight', label: 'win', width: 1.25, platformLabels: { mac: '⌘', windows: 'win' }, platformAria: { mac: 'command', windows: 'windows key' } },
+    { code: 'ContextMenu', label: 'menu', width: 1.25, platformLabels: { mac: 'fn', windows: 'menu' } },
+    { code: 'ControlRight', label: 'ctrl', width: 1.25, align: 'right', platformLabels: { mac: '⌃', windows: 'ctrl' }, platformAria: { mac: 'control', windows: 'control' } },
     { spacer: 0.5, cluster: 'nav' },
     ARROW_KEYS.left,
     ARROW_KEYS.down,
     ARROW_KEYS.right,
   ],
 ]
+
+export function getKeyForPlatform(item, platform) {
+  const label = item.platformLabels?.[platform]
+  if (!label) return item
+
+  return {
+    ...item,
+    label,
+    aria: item.platformAria?.[platform] || label,
+    opticalSymbol: platform === 'mac' && MAC_SYMBOL_CODES.has(item.code),
+  }
+}
 
 export const CHARACTERS_BY_CODE = Object.fromEntries(
   'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((letter) => [`Key${letter}`, letter.toLowerCase()]),

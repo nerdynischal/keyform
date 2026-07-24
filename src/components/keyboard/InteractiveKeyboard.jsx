@@ -1,11 +1,13 @@
-import { ARROW_KEYS, KEY_ROWS } from './keyboard-layout.js'
+import { ARROW_KEYS, getKeyForPlatform, KEY_ROWS } from './keyboard-layout.js'
 import { Keycap } from './Keycap.jsx'
 import './Keyboard.css'
 
-function KeyboardKey({ item, pressedKeys, capsLock, onPress, onRelease }) {
+function KeyboardKey({ item, platform, pressedKeys, capsLock, onPress, onRelease }) {
+  const displayedItem = getKeyForPlatform(item, platform)
+
   return (
     <Keycap
-      item={item}
+      item={displayedItem}
       pressed={item.code ? pressedKeys.has(item.code) : false}
       capsLock={capsLock}
       onPress={onPress}
@@ -14,7 +16,13 @@ function KeyboardKey({ item, pressedKeys, capsLock, onPress, onRelease }) {
   )
 }
 
-export function InteractiveKeyboard({ pressedKeys, capsLock, onPress, onRelease }) {
+export function InteractiveKeyboard({
+  platform,
+  pressedKeys,
+  capsLock,
+  onPress,
+  onRelease,
+}) {
   return (
     <div className="keyboard-stage">
       <div className="keyboard-shadow" />
@@ -36,6 +44,7 @@ export function InteractiveKeyboard({ pressedKeys, capsLock, onPress, onRelease 
                 <KeyboardKey
                   key={item.code || `space-${itemIndex}`}
                   item={item}
+                  platform={platform}
                   pressedKeys={pressedKeys}
                   capsLock={capsLock}
                   onPress={onPress}
@@ -49,6 +58,7 @@ export function InteractiveKeyboard({ pressedKeys, capsLock, onPress, onRelease 
             <span aria-hidden="true" />
             <KeyboardKey
               item={ARROW_KEYS.up}
+              platform={platform}
               pressedKeys={pressedKeys}
               capsLock={capsLock}
               onPress={onPress}
@@ -59,6 +69,7 @@ export function InteractiveKeyboard({ pressedKeys, capsLock, onPress, onRelease 
               <KeyboardKey
                 key={item.code}
                 item={item}
+                platform={platform}
                 pressedKeys={pressedKeys}
                 capsLock={capsLock}
                 onPress={onPress}

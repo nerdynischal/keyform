@@ -103,6 +103,13 @@ export function useKeyboardInput() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.repeat || (event.metaKey && event.code === 'KeyR')) return
+
+      const isButtonActivation = (
+        event.target instanceof HTMLButtonElement
+        && ['Space', 'Enter'].includes(event.code)
+      )
+      if (isButtonActivation) return
+
       if (PREVENT_DEFAULT_CODES.has(event.code)) event.preventDefault()
 
       const isShortcut = event.metaKey || event.ctrlKey || event.altKey
