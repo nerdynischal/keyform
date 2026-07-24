@@ -9,6 +9,7 @@ function getKeycapClassName(item, pressed) {
     'keycap',
     pressed && 'is-pressed',
     item.small && 'keycap--small',
+    item.indicator && 'keycap--indicator-only',
     item.opticalSymbol && 'keycap--optical-symbol',
     item.align && `keycap--${item.align}`,
     item.cluster && `keycap--${item.cluster}`,
@@ -39,7 +40,7 @@ export function Keycap({ item, pressed, capsLock, onPress, onRelease }) {
       type="button"
       data-code={item.code}
       aria-label={item.aria || item.label || item.code}
-      aria-pressed={pressed}
+      aria-pressed={item.code === 'CapsLock' ? capsLock : pressed}
       tabIndex={-1}
       onPointerDown={(event) => {
         event.preventDefault()

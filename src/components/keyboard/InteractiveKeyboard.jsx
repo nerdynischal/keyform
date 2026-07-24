@@ -8,7 +8,7 @@ function KeyboardKey({ item, platform, pressedKeys, capsLock, onPress, onRelease
   return (
     <Keycap
       item={displayedItem}
-      pressed={item.code ? pressedKeys.has(item.code) : false}
+      pressed={displayedItem.code ? pressedKeys.has(displayedItem.code) : false}
       capsLock={capsLock}
       onPress={onPress}
       onRelease={onRelease}

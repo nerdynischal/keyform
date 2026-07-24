@@ -93,11 +93,11 @@ export const KEY_ROWS = [
   ],
   [
     { code: 'ControlLeft', label: 'ctrl', width: 1.25, align: 'left', platformLabels: { mac: '⌃', windows: 'ctrl' }, platformAria: { mac: 'control', windows: 'control' } },
-    { code: 'MetaLeft', label: 'win', width: 1.25, platformLabels: { mac: '⌘', windows: 'win' }, platformAria: { mac: 'command', windows: 'windows key' } },
-    { code: 'AltLeft', label: 'alt', width: 1.25, platformLabels: { mac: '⌥', windows: 'alt' }, platformAria: { mac: 'option', windows: 'alt' } },
+    { code: 'MetaLeft', label: 'win', width: 1.25, platformCodes: { mac: 'AltLeft' }, platformLabels: { mac: '⌥', windows: 'win' }, platformAria: { mac: 'option', windows: 'windows key' } },
+    { code: 'AltLeft', label: 'alt', width: 1.25, platformCodes: { mac: 'MetaLeft' }, platformLabels: { mac: '⌘', windows: 'alt' }, platformAria: { mac: 'command', windows: 'alt' } },
     { code: 'Space', label: '', width: 6.25, aria: 'space bar' },
-    { code: 'AltRight', label: 'alt', width: 1.25, platformLabels: { mac: '⌥', windows: 'alt' }, platformAria: { mac: 'option', windows: 'alt' } },
-    { code: 'MetaRight', label: 'win', width: 1.25, platformLabels: { mac: '⌘', windows: 'win' }, platformAria: { mac: 'command', windows: 'windows key' } },
+    { code: 'AltRight', label: 'alt', width: 1.25, platformCodes: { mac: 'MetaRight' }, platformLabels: { mac: '⌘', windows: 'alt' }, platformAria: { mac: 'command', windows: 'alt' } },
+    { code: 'MetaRight', label: 'win', width: 1.25, platformCodes: { mac: 'AltRight' }, platformLabels: { mac: '⌥', windows: 'win' }, platformAria: { mac: 'option', windows: 'windows key' } },
     { code: 'ContextMenu', label: 'menu', width: 1.25, platformLabels: { mac: 'fn', windows: 'menu' } },
     { code: 'ControlRight', label: 'ctrl', width: 1.25, align: 'right', platformLabels: { mac: '⌃', windows: 'ctrl' }, platformAria: { mac: 'control', windows: 'control' } },
     { spacer: 0.5, cluster: 'nav' },
@@ -113,6 +113,7 @@ export function getKeyForPlatform(item, platform) {
 
   return {
     ...item,
+    code: item.platformCodes?.[platform] || item.code,
     label,
     aria: item.platformAria?.[platform] || label,
     opticalSymbol: platform === 'mac' && MAC_SYMBOL_CODES.has(item.code),
