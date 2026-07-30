@@ -269,13 +269,16 @@
   padding-right: clamp(4px, calc(var(--unit) * 0.2), 12px);
 }
 
+.keycap__indicator-group {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(3px, calc(var(--unit) * 0.1), 6px);
+}
+
 .keycap__indicator {
-  position: absolute;
-  top: 17%;
-  left: 15%;
-  width: 4%;
+  width: clamp(2px, calc(var(--unit) * 0.07), 4px);
   aspect-ratio: 1;
-  min-width: 2px;
+  flex: 0 0 auto;
   border-radius: 50%;
   background: #111;
 }
@@ -319,6 +322,129 @@
   border-radius: 50%;
   background: rgba(43, 43, 40, 0.55);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.keyboard-stage--pebble {
+  --gap: clamp(2px, 0.52vw, 8px);
+}
+
+.keyboard-stage--pebble .keyboard-shadow {
+  width: min(93%, 1270px);
+  height: 42%;
+  bottom: 7px;
+  background: rgba(60, 58, 53, 0.2);
+  filter: blur(38px);
+}
+
+.keyboard-stage--pebble .keyboard {
+  border-color: rgba(74, 72, 67, 0.15);
+  border-radius: clamp(18px, 2.7vw, 38px);
+  background:
+    radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.98), transparent 46%),
+    linear-gradient(180deg, #efede8 0%, #e4e2dc 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -2px 0 rgba(92, 89, 82, 0.08),
+    0 2px 3px rgba(38, 37, 34, 0.12),
+    0 22px 44px rgba(48, 46, 42, 0.14);
+  transform: rotateX(1deg);
+}
+
+.keyboard-stage--pebble .keyboard::after {
+  opacity: 0.08;
+}
+
+.keyboard-stage--pebble .keyboard__topline {
+  height: clamp(16px, 1.8vw, 27px);
+  color: rgba(77, 76, 72, 0.53);
+}
+
+.keyboard-stage--pebble .keyboard__lights {
+  gap: clamp(5px, 0.65vw, 10px);
+}
+
+.keyboard-stage--pebble .keyboard__lights i {
+  width: clamp(3px, 0.32vw, 5px);
+  height: clamp(3px, 0.32vw, 5px);
+  background: #9a9892;
+  box-shadow: none;
+}
+
+.keyboard-stage--pebble .keyboard__well {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.keyboard-stage--pebble .key-row--0 {
+  height: calc(var(--unit) * 0.68);
+  margin-bottom: var(--gap);
+}
+
+.keyboard-stage--pebble .key-row--0 .keycap {
+  height: calc(var(--unit) * 0.68);
+}
+
+.keyboard-stage--pebble .keycap {
+  border-radius: 999px;
+  background: transparent;
+  color: #757570;
+  box-shadow: none;
+}
+
+.keyboard-stage--pebble .keycap__surface {
+  inset: 1px;
+  border: clamp(1px, 0.13vw, 2px) solid rgba(63, 62, 58, 0.78);
+  border-radius: 999px;
+  background:
+    radial-gradient(110% 90% at 50% 4%, rgba(255, 255, 255, 0.96), transparent 67%),
+    linear-gradient(180deg, #f5f3ee, #e9e7e1);
+  box-shadow:
+    inset 0 2px 4px rgba(73, 70, 64, 0.14),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.82),
+    0 1px 2px rgba(56, 54, 50, 0.16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .keyboard-stage--pebble .keycap:hover .keycap__surface {
+    background:
+      radial-gradient(110% 90% at 50% 4%, #fff, transparent 67%),
+      linear-gradient(180deg, #faf9f5, #ebe9e3);
+    color: #4f4e4a;
+  }
+}
+
+.keyboard-stage--pebble .keycap:not(.keycap--indicator-only).is-pressed .keycap__surface,
+.keyboard-stage--pebble .keycap:not(.keycap--indicator-only):active .keycap__surface {
+  inset: 2px 1px 0;
+  background:
+    radial-gradient(110% 90% at 50% 4%, rgba(255, 255, 255, 0.62), transparent 67%),
+    linear-gradient(180deg, #dfddd7, #e8e6e0);
+  color: #4b4a46;
+  box-shadow:
+    inset 0 2px 3px rgba(62, 60, 55, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.keyboard-stage--pebble .keycap:focus-visible {
+  outline-color: #3f3e3a;
+}
+
+.keyboard-stage--pebble .keycap__indicator {
+  background: #77756f;
+}
+
+.keyboard-stage--pebble .keycap__indicator.is-on {
+  background: var(--accent);
+}
+
+.keyboard-stage--pebble .homing-bar {
+  background: rgba(74, 73, 69, 0.46);
+}
+
+.keyboard-stage--pebble .keyboard__edge span {
+  background: rgba(83, 81, 75, 0.28);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 @media (max-width: 720px) {

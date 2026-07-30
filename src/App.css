@@ -45,7 +45,13 @@
   flex: 0 0 auto;
 }
 
-.platform-toggle {
+.header-selectors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-toggle {
   min-height: 34px;
   padding: 2px;
   border: 1px solid rgba(25, 25, 23, 0.24);
@@ -55,7 +61,7 @@
   background: rgba(255, 255, 255, 0.18);
 }
 
-.platform-toggle button {
+.header-toggle button {
   min-width: 52px;
   padding: 0 8px;
   border: 0;
@@ -69,19 +75,26 @@
   cursor: pointer;
   transition:
     background-color 140ms ease,
-    color 140ms ease;
+    color 140ms ease,
+    transform 120ms var(--ease-out);
 }
 
-.platform-toggle button:hover {
-  color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .header-toggle button:hover {
+    color: var(--ink);
+  }
 }
 
-.platform-toggle button.is-active {
+.header-toggle button.is-active {
   background: var(--ink);
   color: var(--paper);
 }
 
-.platform-toggle button:focus-visible {
+.header-toggle button:active {
+  transform: scale(0.97);
+}
+
+.header-toggle button:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
   z-index: 1;
@@ -291,7 +304,7 @@ h1 {
     min-height: 60px;
   }
 
-  .platform-toggle button {
+  .header-toggle button {
     min-width: 48px;
     padding-inline: 6px;
   }
@@ -339,6 +352,19 @@ h1 {
     padding-inline: 9px;
   }
 
+  .brand span {
+    display: none;
+  }
+
+  .brand__mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .header-selectors {
+    gap: 5px;
+  }
+
   .control-actions .control-button:first-child {
     gap: 0;
     font-size: 0;
@@ -349,9 +375,13 @@ h1 {
     height: 14px;
   }
 
-  .platform-toggle button {
-    min-width: 43px;
+  .header-toggle button {
+    min-width: 39px;
     padding-inline: 4px;
     font-size: 7px;
+  }
+
+  .header-toggle:last-child button {
+    min-width: 48px;
   }
 }

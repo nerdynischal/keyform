@@ -18,18 +18,22 @@ function KeyboardKey({ item, platform, pressedKeys, capsLock, onPress, onRelease
 
 export function InteractiveKeyboard({
   platform,
+  appearance,
   pressedKeys,
   capsLock,
   onPress,
   onRelease,
 }) {
   return (
-    <div className="keyboard-stage">
+    <div className={`keyboard-stage keyboard-stage--${appearance}`}>
       <div className="keyboard-shadow" />
 
-      <section className="keyboard" aria-label="Interactive ANSI QWERTY keyboard">
+      <section
+        className="keyboard"
+        aria-label={`Interactive ANSI QWERTY keyboard, ${appearance} appearance`}
+      >
         <div className="keyboard__topline">
-          <span>KEYFORM / 87</span>
+          <span>{appearance === 'pebble' ? 'KEYFORM / PEBBLE' : 'KEYFORM / 87'}</span>
           <span className="keyboard__lights" aria-hidden="true">
             <i className={capsLock ? 'is-on' : ''} />
             <i />

@@ -53,11 +53,15 @@ export function Keycap({ item, pressed, capsLock, onPress, onRelease }) {
       onContextMenu={(event) => event.preventDefault()}
     >
       <span className="keycap__surface">
-        {item.indicator && (
-          <span className={`keycap__indicator${capsLock ? ' is-on' : ''}`} />
-        )}
-
-        {item.arrow ? (
+        {item.indicator ? (
+          <span className="keycap__indicator-group">
+            <span
+              className={`keycap__indicator${capsLock ? ' is-on' : ''}`}
+              aria-hidden="true"
+            />
+            <span className="keycap__label">{item.label}</span>
+          </span>
+        ) : item.arrow ? (
           <ArrowIcon direction={item.arrow} />
         ) : item.sub ? (
           <span className="keycap__legends">

@@ -7,10 +7,35 @@ const PLATFORMS = [
   { value: 'windows', label: 'Windows' },
 ]
 
+const APPEARANCES = [
+  { value: 'original', label: 'Original' },
+  { value: 'pebble', label: 'Pebble' },
+]
+
+function HeaderToggle({ label, options, value, onChange }) {
+  return (
+    <div className="header-toggle" role="group" aria-label={label}>
+      {options.map((option) => (
+        <button
+          className={value === option.value ? 'is-active' : ''}
+          type="button"
+          key={option.value}
+          onClick={() => onChange(option.value)}
+          aria-pressed={value === option.value}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 export function SiteHeader({
   platform,
+  appearance,
   muted,
   onPlatformChange,
+  onAppearanceChange,
   onToggleSound,
   onReset,
 }) {
@@ -21,18 +46,19 @@ export function SiteHeader({
         <span>KEYFORM</span>
       </a>
 
-      <div className="platform-toggle" role="group" aria-label="Keyboard platform">
-        {PLATFORMS.map((option) => (
-          <button
-            className={platform === option.value ? 'is-active' : ''}
-            type="button"
-            key={option.value}
-            onClick={() => onPlatformChange(option.value)}
-            aria-pressed={platform === option.value}
-          >
-            {option.label}
-          </button>
-        ))}
+      <div className="header-selectors">
+        <HeaderToggle
+          label="Keyboard platform"
+          options={PLATFORMS}
+          value={platform}
+          onChange={onPlatformChange}
+        />
+        <HeaderToggle
+          label="Keyboard appearance"
+          options={APPEARANCES}
+          value={appearance}
+          onChange={onAppearanceChange}
+        />
       </div>
 
       <div className="control-actions">
